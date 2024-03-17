@@ -1,9 +1,57 @@
 body {
-  background-image: url("https://wallpapercave.com/wp/wp11905555.jpg");
-  /* background-repeat: no-repeat; */
-  background-size: auto;
+  background-color: #1f618d;
 }
 
+/* ==================================================== */
+/* Landing Page CSS  */
+.landingHeader {
+  font-size: 4rem;
+  font-weight: 800;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 15rem;
+}
+
+.form__label {
+  font-size: 2rem;
+  margin-top: 2rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.name__input {
+  margin: auto;
+  font-size: 1.5rem;
+  width: 15rem;
+  height: 4rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.name__submit-btn {
+  margin: auto;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 1.5rem;
+  font-weight: 700;
+  height: 4rem;
+  width: 15rem;
+
+  background-color: #2ecc71;
+  color: black;
+
+  border-radius: 15px;
+  border-width: 0;
+}
+/* ==================================================== */
 .center {
   display: flex;
   justify-content: center;
