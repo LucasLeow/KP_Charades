@@ -5,7 +5,7 @@ body {
 /* ==================================================== */
 /* Landing Page CSS  */
 
-@keyframes landingTitleAppear {
+@keyframes pageAppear {
   from {
     opacity: 0;
   }
@@ -13,14 +13,24 @@ body {
     opacity: 1;
   }
 }
+
+@keyframes pageDisappear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .landingHeader {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 800;
   color: white;
   display: flex;
   justify-content: center;
   margin-top: 15rem;
-  animation-name: landingTitleAppear;
+  animation-name: pageAppear;
   animation-duration: 3s;
 }
 
@@ -30,7 +40,7 @@ body {
   color: white;
   display: flex;
   justify-content: center;
-  animation-name: landingTitleAppear;
+  animation-name: pageAppear;
   animation-duration: 3s;
 }
 
@@ -44,11 +54,11 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  animation-name: landingTitleAppear;
+  animation-name: pageAppear;
   animation-duration: 3s;
 }
 
-.name__submit-btn {
+.btn {
   margin: auto;
   margin-top: 2rem;
   display: flex;
@@ -65,13 +75,26 @@ body {
 
   border-radius: 15px;
   border-width: 0;
-  animation-name: landingTitleAppear;
+  animation-name: pageAppear;
   animation-duration: 3s;
 }
 /* ==================================================== */
+
+.center_normal--text {
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 2rem;
+
+  display: flex;
+  justify-content: center;
+  animation-name: pageAppear;
+  animation-duration: 3s;
+}
+
 .center {
   display: flex;
   justify-content: center;
+  align-items: center;
   align-items: center;
   margin: 0;
   position: absolute;
@@ -117,5 +140,6 @@ body {
 }
 
 .hidden {
-  display: None;
+  animation-name: pageDisappear;
+  animation-duration: 5s;
 }

@@ -4,12 +4,13 @@
 // Global Variables
 // =========================================================================================================
 let guesserName;
-
+let roundNumber = 1;
+const MAXROUND = 5;
 // =========================================================================================================
 // HTML Nodes Selection
 // =========================================================================================================
-// Screen A (Landing Page) Nodes
-const sectionANode = document.querySelector(".ScreenA");
+// Screen X (Landing Page) Nodes
+const sectionANode = document.querySelector(".ScreenX");
 
 const wordNode = document.querySelector(".word");
 const mcq_nodes = document.querySelectorAll(".mcq");
@@ -19,7 +20,7 @@ const guessBtnNode = document.querySelector(".guess_btn");
 
 const timerNode = document.querySelector(".countdown");
 // =========================================================================================================
-// Landing Page Functionalities
+// Landing Page Functionalities (Screen X)
 // =========================================================================================================
 const nameSubmitBtnNode = document.querySelector(".name__submit-btn");
 const inputName = document.querySelector(".name__input");
@@ -27,8 +28,24 @@ const inputName = document.querySelector(".name__input");
 nameSubmitBtnNode.addEventListener("click", function (ev) {
   ev.preventDefault();
   guesserName = inputName.value;
-  sectionANode.classList.add("hidden");
+  // sectionANode.classList.add("hidden");
+  window.location.href = "ScreenA.html";
   console.log(guesserName);
+});
+
+// =========================================================================================================
+
+// =========================================================================================================
+// Landing Page Functionalities (Screen A)
+// =========================================================================================================
+const roundDivNode = document.querySelector(".round_number");
+const readyBtnNode = document.querySelector(".screenA_readyBtn");
+
+roundDivNode.textContent = `Round ${roundNumber} of ${MAXROUND}`;
+
+readyBtnNode.addEventListener("click", function (ev) {
+  ev.preventDefault();
+  window.location.href = "ScreenB.html";
 });
 
 // =========================================================================================================
@@ -54,7 +71,6 @@ const wordArray = [
 
 let guessTime = 5;
 let guesserTime;
-// =========================================================================================================
 // Helper Functions
 // =========================================================================================================
 function countdown() {
