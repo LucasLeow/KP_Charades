@@ -1,8 +1,16 @@
 "use strict";
 
 // =========================================================================================================
+// Global Variables
+// =========================================================================================================
+let guesserName;
+
+// =========================================================================================================
 // HTML Nodes Selection
 // =========================================================================================================
+// Screen A (Landing Page) Nodes
+const sectionANode = document.querySelector(".ScreenA");
+
 const wordNode = document.querySelector(".word");
 const mcq_nodes = document.querySelectorAll(".mcq");
 
@@ -10,6 +18,20 @@ const guessBtnContainerNode = document.querySelector(".guesser_button");
 const guessBtnNode = document.querySelector(".guess_btn");
 
 const timerNode = document.querySelector(".countdown");
+// =========================================================================================================
+// Landing Page Functionalities
+// =========================================================================================================
+const nameSubmitBtnNode = document.querySelector(".name__submit-btn");
+const inputName = document.querySelector(".name__input");
+
+nameSubmitBtnNode.addEventListener("click", function (ev) {
+  ev.preventDefault();
+  guesserName = inputName.value;
+  sectionANode.classList.add("hidden");
+  console.log(guesserName);
+});
+
+// =========================================================================================================
 
 // =========================================================================================================
 // Variables Declaration
