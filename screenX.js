@@ -12,7 +12,7 @@ nameSubmitBtnNode.addEventListener("click", function (ev) {
   ev.preventDefault();
   guesserName = inputName.value;
   // sectionANode.classList.add("hidden");
-  window.location.href = "screenA.html";
+  window.location.href = "ScreenA.html";
   console.log(guesserName);
 });
 
