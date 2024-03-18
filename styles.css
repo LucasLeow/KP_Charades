@@ -67,6 +67,7 @@ body {
 
   font-size: 1.5rem;
   font-weight: 700;
+  font-family: "Roboto", sans-serif;
   height: 4rem;
   width: 15rem;
 
@@ -75,13 +76,15 @@ body {
 
   border-radius: 15px;
   border-width: 0;
+  box-shadow: 7px 5px 5px rgba(0, 0, 0, 0.5);
+
   animation-name: pageAppear;
   animation-duration: 3s;
 }
 /* ==================================================== */
 
 .center_normal--text {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   color: white;
   margin-top: 2rem;
 
@@ -108,21 +111,8 @@ body {
   font-size: 3rem;
 }
 
-.margin_top {
-  margin-top: 12rem;
-}
-
-.margin_top_top {
-  margin-top: 24rem;
-}
-
 .hidden {
   display: none;
-}
-
-.center_top {
-  display: flex;
-  justify-content: center;
 }
 
 .guess_btn {
@@ -134,12 +124,17 @@ body {
   align-items: center;
 }
 
-.countdown {
-  font-size: 3rem;
-  color: aliceblue;
-}
-
 .hidden {
   animation-name: pageDisappear;
   animation-duration: 5s;
+}
+
+.word {
+  font-size: 2rem;
+  font-weight: 600;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+
+  background-color: #154360;
 }

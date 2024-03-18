@@ -3,85 +3,25 @@
 // =========================================================================================================
 // Global Variables
 // =========================================================================================================
-let guesserName;
-let roundNumber = 1;
-const MAXROUND = 5;
+
 // =========================================================================================================
 // HTML Nodes Selection
 // =========================================================================================================
-// Screen X (Landing Page) Nodes
-const sectionANode = document.querySelector(".ScreenX");
 
-const wordNode = document.querySelector(".word");
 const mcq_nodes = document.querySelectorAll(".mcq");
 
 const guessBtnContainerNode = document.querySelector(".guesser_button");
 const guessBtnNode = document.querySelector(".guess_btn");
 
-const timerNode = document.querySelector(".countdown");
-// =========================================================================================================
-// Landing Page Functionalities (Screen X)
-// =========================================================================================================
-const nameSubmitBtnNode = document.querySelector(".name__submit-btn");
-const inputName = document.querySelector(".name__input");
-
-nameSubmitBtnNode.addEventListener("click", function (ev) {
-  ev.preventDefault();
-  guesserName = inputName.value;
-  // sectionANode.classList.add("hidden");
-  window.location.href = "ScreenA.html";
-  console.log(guesserName);
-});
-
-// =========================================================================================================
-
-// =========================================================================================================
-// Landing Page Functionalities (Screen A)
-// =========================================================================================================
-const roundDivNode = document.querySelector(".round_number");
-const readyBtnNode = document.querySelector(".screenA_readyBtn");
-
-roundDivNode.textContent = `Round ${roundNumber} of ${MAXROUND}`;
-
-readyBtnNode.addEventListener("click", function (ev) {
-  ev.preventDefault();
-  window.location.href = "ScreenB.html";
-});
-
-// =========================================================================================================
-
 // =========================================================================================================
 // Variables Declaration
 // =========================================================================================================
-let selectedWord;
-let countdownTimer;
+
 let guessCountDownTimer;
 
-const wordArray = [
-  "Budget Cuts",
-  "Sudden Deadlines",
-  "Technology Failures",
-  "Evolving Customer Needs",
-  "Mergers and Acquisitions",
-  "Cybersecurity Threats",
-  "Regulatory Changes",
-  "Cultural Shifts",
-  "Supply Chain Disruptions",
-];
-
-let guessTime = 5;
 let guesserTime;
 // Helper Functions
 // =========================================================================================================
-function countdown() {
-  if (guessTime == 0) {
-    clearTimeout(countdownTimer);
-    displayOptions();
-  } else {
-    timerNode.innerHTML = guessTime + " Seconds Remaining To Act";
-    guessTime--;
-  }
-}
 
 function guessCountdown() {
   if (guesserTime == 0) {
@@ -95,11 +35,6 @@ function guessCountdown() {
 function mod(n, m) {
   return ((n % m) + m) % m;
 }
-
-const displayWord = function () {
-  selectedWord = wordArray[Math.floor(Math.random() * wordArray.length)];
-  wordNode.textContent = selectedWord;
-};
 
 const displayOptions = function () {
   wordNode.classList.toggle("hidden");
@@ -132,7 +67,6 @@ const displayOptions = function () {
 
 wordNode.addEventListener("click", function () {
   clearInterval(randomWordInterval);
-  countdownTimer = setInterval(countdown, 1000);
 });
 
 guessBtnContainerNode.addEventListener(
@@ -148,7 +82,6 @@ guessBtnContainerNode.addEventListener(
 // =========================================================================================================
 // Main program
 // =========================================================================================================
-const randomWordInterval = setInterval(displayWord, 300);
 
 /*
 Things left to do

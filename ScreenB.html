@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Screen A</title>
+    <title>Screen B</title>
 
     <!-- ------------------------------------------------------------------------------------------------------------------------------------------- -->
     <!-- Bootstrap CDN -->
@@ -24,28 +24,21 @@
     <!-- ------------------------------------------------------------------------------------------------------------------------------------------- -->
     <!-- External Script -->
     <link defer rel="stylesheet" href="styles.css" />
-    <script defer src="screenA.js"></script>
+    <script defer src="screenB.js"></script>
     <!-- ------------------------------------------------------------------------------------------------------------------------------------------- -->
   </head>
 
   <body>
-    <!-- ------------------------------------------------------------------------------------------------------------------------------------------- -->
-    <!--  (Screen A)-->
     <section class="ScreenB">
       <div class="container">
         <div class="row">
           <div class="col landingHeader">Actor's Turn!</div>
         </div>
+        <div class="row center_normal--text">Portray the following word:</div>
 
-        <div class="row center_normal--text">
-          Face your screen for the Actor to tap
-        </div>
-
-        <div class="row center_normal--text round_number"></div>
-        <button class="screenA_readyBtn btn">I'm Ready!</button>
+        <div class="row center_normal--text word"></div>
+        <div class="countdown center_normal--text mt-5"></div>
       </div>
     </section>
-
-    <!-- ------------------------------------------------------------------------------------------------------------------------------------------- -->
   </body>
 </html>
