@@ -107,8 +107,8 @@ body {
   transform: translate(-50%, -50%);
 
   width: 50rem;
-  height: 10rem;
-  font-size: 3rem;
+  height: 3rem;
+  font-size: 1.5rem;
 }
 
 .hidden {
@@ -124,11 +124,6 @@ body {
   align-items: center;
 }
 
-.hidden {
-  animation-name: pageDisappear;
-  animation-duration: 5s;
-}
-
 .word {
   font-size: 2rem;
   font-weight: 600;
@@ -137,4 +132,14 @@ body {
   align-items: center;
 
   background-color: #154360;
+}
+.margin_top {
+  margin-top: 6rem;
+}
+.margin_top_top {
+  margin-top: 12rem;
+}
+
+.margin_top_top_top {
+  margin-top: 18rem;
 }

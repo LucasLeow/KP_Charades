@@ -27,7 +27,7 @@ let selectedWord;
 let count = 0;
 let intervalSpeed = 50;
 let cycleCount = 0;
-let guessTime = 15; // 15 seconds
+let guessTime = 2; // 15 seconds
 let countdownTimer;
 
 // =========================================================================================================
@@ -71,13 +71,15 @@ const screenNode = document.querySelector(".screen");
 
 // Screen A
 let roundDivNode;
-let readyBtnNode;
+let actorReadyBtnNode;
 
 // Screen B
 let wordNode;
 let timerNode;
 let randomWordInterval;
-// const mcq_nodes = document.querySelectorAll(".mcq");
+
+// Screen D
+let guessReadyBtnNode;
 
 // const guessBtnContainerNode = document.querySelector(".guesser_button");
 // const guessBtnNode = document.querySelector(".guess_btn");
@@ -111,10 +113,15 @@ function countdown() {
   if (guessTime == -1) {
     console.log(selectedWord);
     clearTimeout(countdownTimer);
+    displayScreenD();
   } else {
     timerNode.innerHTML = guessTime + " Seconds Remaining To Act";
     guessTime--;
   }
+}
+
+function mod(n, m) {
+  return ((n % m) + m) % m;
 }
 
 const displayScreenA = () => {
@@ -149,6 +156,66 @@ const displayScreenB = () => {
 
   screenNode.innerHTML = screenB_html;
 };
+
+const displayScreenD = () => {
+  const screenD_html = `
+  <div class="container">
+  <div class="row">
+    <div class="col landingHeader">${guesserName}'s turn</div>
+  </div>
+
+  <div class="row center_normal--text">
+    Face the screen for ${guesserName} to tap
+  </div>
+
+  <div class="row center_normal--text round_number"></div>
+  <button class="screenD_readyBtn btn">I'm Ready!</button>
+</div>
+  `;
+  document.body.style.backgroundColor = "tomato";
+  screenNode.innerHTML = screenD_html;
+
+  guessReadyBtnNode = document.querySelector(".screenD_readyBtn");
+  guessReadyBtnNode.addEventListener("click", function (ev) {
+    ev.preventDefault();
+    console.log("Screen D ready btn clicked");
+    displayOptions();
+  });
+};
+
+const displayOptions = function () {
+  let answerIndex = wordArray.indexOf(selectedWord);
+  let backIndex = mod(answerIndex - 2, wordArray.length);
+  let frontIndex = mod(answerIndex + 2, wordArray.length);
+  console.log(answerIndex, backIndex, frontIndex);
+
+  const answerOptions = new Array(
+    wordArray[answerIndex],
+    wordArray[backIndex],
+    wordArray[frontIndex]
+  );
+
+  console.log(answerOptions);
+
+  const screenE_html = `
+  <div class="container">
+  <div class="row">
+    <div class="landingHeader">What was portrayed?</div>
+    <div class="btn">${answerOptions[0]}</div>
+  </div>
+  <div class="row">
+    <div class="btn">${answerOptions[1]}</div>
+  </div>
+  <div class="row">
+    <div class="btn">${answerOptions[2]}</div>
+  </div>
+</div>`;
+
+  screenNode.innerHTML = screenE_html;
+
+  // iterate through answerOptions & mcqNodes to populate mcqNodes in random order
+};
+
 // =========================================================================================================
 // Main
 // =========================================================================================================
@@ -165,7 +232,7 @@ nameSubmitBtnNode.addEventListener("click", function (ev) {
   console.log(guesserName, actorName);
   displayScreenA();
   roundDivNode = document.querySelector(".round_number");
-  readyBtnNode = document.querySelector(".screenA_readyBtn");
+  actorReadyBtnNode = document.querySelector(".screenA_readyBtn");
   console.log(roundDivNode);
   screenNode.scrollIntoView({
     behavior: "auto",
@@ -175,7 +242,7 @@ nameSubmitBtnNode.addEventListener("click", function (ev) {
 
   // Screen A Functionalities
   roundDivNode.textContent = `Round ${roundNumber} of ${MAXROUND}`;
-  readyBtnNode.addEventListener("click", function (ev) {
+  actorReadyBtnNode.addEventListener("click", function (ev) {
     ev.preventDefault();
     displayScreenB();
     wordNode = document.querySelector(".word");
@@ -183,44 +250,6 @@ nameSubmitBtnNode.addEventListener("click", function (ev) {
     randomWordInterval = setInterval(displayWord, intervalSpeed);
   });
 });
-
-function guessCountdown() {
-  if (guesserTime == 0) {
-    clearTimeout(guessCountDownTimer);
-  } else {
-    timerNode.innerHTML = guesserTime + " Seconds Remaining To Guess";
-    guesserTime--;
-  }
-}
-
-function mod(n, m) {
-  return ((n % m) + m) % m;
-}
-
-const displayOptions = function () {
-  wordNode.classList.toggle("hidden");
-  timerNode.innerHTML = "";
-  guessBtnContainerNode.classList.toggle("hidden"); // show button
-  mcq_nodes.forEach((node) => node.classList.toggle("hidden")); // show all mcq option nodes
-
-  let answerIndex = wordArray.indexOf(selectedWord);
-  let backIndex = mod(answerIndex - 2, wordArray.length);
-  let frontIndex = mod(answerIndex + 2, wordArray.length);
-  console.log(answerIndex, backIndex, frontIndex);
-
-  const answerOptions = new Array(
-    wordArray[answerIndex],
-    wordArray[backIndex],
-    wordArray[frontIndex]
-  );
-
-  console.log(answerOptions);
-
-  // iterate through answerOptions & mcqNodes to populate mcqNodes in random order
-  for (let i = 0; i < mcq_nodes.length; i++) {
-    mcq_nodes[i].textContent = answerOptions[i];
-  }
-};
 
 // =========================================================================================================
 // Event Listeners
