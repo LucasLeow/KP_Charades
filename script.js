@@ -179,7 +179,7 @@ const displayScreenD = () => {
   guessReadyBtnNode.addEventListener("click", function (ev) {
     ev.preventDefault();
     console.log("Screen D ready btn clicked");
-    displayOptions();
+    displayOptions(); // displays screen E
   });
 };
 
@@ -199,19 +199,28 @@ const displayOptions = function () {
 
   const screenE_html = `
   <div class="container">
-  <div class="row">
-    <div class="landingHeader">What was portrayed?</div>
-    <div class="btn">${answerOptions[0]}</div>
-  </div>
-  <div class="row">
-    <div class="btn">${answerOptions[1]}</div>
-  </div>
-  <div class="row">
-    <div class="btn">${answerOptions[2]}</div>
-  </div>
+    <div class="row">
+      <div class="landingHeader">What was portrayed?</div>
+      <div class="btn" data-answer="${answerOptions[0]}">${answerOptions[0]}</div>
+    </div>
+    <div class="row">
+      <div class="btn" data-answer="${answerOptions[1]}">${answerOptions[1]}</div>
+    </div>
+    <div class="row">
+      <div class="btn" data-answer="${answerOptions[2]}">${answerOptions[2]}</div>
+    </div>
+    <div class="row">
+      <div class="countdown center_normal--text mt-5"></div>
+    </div>
 </div>`;
 
   screenNode.innerHTML = screenE_html;
+
+  // Event delegation for option selection
+  document.querySelector(".container").addEventListener("click", function (ev) {
+    ev.preventDefault();
+    console.log(ev.target.dataset.answer);
+  });
 
   // iterate through answerOptions & mcqNodes to populate mcqNodes in random order
 };
