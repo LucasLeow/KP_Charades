@@ -225,6 +225,7 @@ const displayScreenF = (msg) => {
   `;
   screenNode.innerHTML = screenF_html;
   roundScore = 0;
+  answerTimer = 0;
   roundNumber++;
   if (roundNumber <= MAXROUND) setTimeout(displayScreenA, 5000); // switch to screenA after 5 seconds
 };
