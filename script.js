@@ -185,6 +185,9 @@ const displayScreenB = () => {
 const displayScreenD = () => {
   const screenD_html = `
   <div class="container">
+    <div class="row center_normal--text">
+      ${guesserName} &nbsp &nbsp &nbsp &nbsp &nbsp Total Score: ${totalScore}
+    </div>
   <div class="row">
     <div class="col landingHeader">${guesserName}'s turn</div>
   </div>
@@ -211,25 +214,12 @@ const displayScreenD = () => {
 const displayScreenF = (msg) => {
   const screenF_html = `
   <div class="container">
+    <div class="row center_normal--text">
+      ${guesserName} &nbsp &nbsp &nbsp &nbsp &nbsp Total Score: ${totalScore}
+    </div>
   <div class="row">
     <div class="landingHeader">${msg}!</div>
     <div class="center_normal--text">Score for this round: ${roundScore}</div>
-    <div class="btn" data-answer="${answerOptions[0]}">
-      ${answerOptions[0]}
-    </div>
-  </div>
-  <div class="row">
-    <div class="btn" data-answer="${answerOptions[1]}">
-      ${answerOptions[1]}
-    </div>
-  </div>
-  <div class="row">
-    <div class="btn" data-answer="${answerOptions[2]}">
-      ${answerOptions[2]}
-    </div>
-  </div>
-  <div class="row">
-    <div class="countdown center_normal--text mt-5"></div>
   </div>
 </div>
   `;
@@ -255,6 +245,9 @@ const displayOptions = function () {
 
   const screenE_html = `
   <div class="container">
+    <div class="row center_normal--text">
+      ${guesserName} &nbsp &nbsp &nbsp &nbsp &nbsp Total Score: ${totalScore}
+    </div>
     <div class="row">
       <div class="landingHeader">What was portrayed?</div>
       <div class="btn" data-answer="${answerOptions[0]}">${answerOptions[0]}</div>
