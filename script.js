@@ -30,6 +30,8 @@ let cycleCount = 0;
 let guessTime = 2; // 15 seconds
 let countdownTimer;
 
+let answerOptions;
+
 let answerTimer = 0;
 let roundScore = 0;
 let totalScore = 0;
@@ -192,13 +194,43 @@ const displayScreenD = () => {
   });
 };
 
+const displayScreenF = (msg) => {
+  const screenF_html = `
+  <div class="container">
+  <div class="row">
+    <div class="landingHeader">${msg}!</div>
+    <div class="center_normal--text">Score for this round: ${roundScore}</div>
+    <div class="btn" data-answer="${answerOptions[0]}">
+      ${answerOptions[0]}
+    </div>
+  </div>
+  <div class="row">
+    <div class="btn" data-answer="${answerOptions[1]}">
+      ${answerOptions[1]}
+    </div>
+  </div>
+  <div class="row">
+    <div class="btn" data-answer="${answerOptions[2]}">
+      ${answerOptions[2]}
+    </div>
+  </div>
+  <div class="row">
+    <div class="countdown center_normal--text mt-5"></div>
+  </div>
+</div>
+  `;
+  screenNode.innerHTML = screenF_html;
+  roundScore = 0;
+  setTimeout(displayScreenA, 3000); // switch to screenA after 3 seconds
+};
+
 const displayOptions = function () {
   let answerIndex = wordArray.indexOf(selectedWord);
   let backIndex = mod(answerIndex - 2, wordArray.length);
   let frontIndex = mod(answerIndex + 2, wordArray.length);
   console.log(answerIndex, backIndex, frontIndex);
 
-  const answerOptions = new Array(
+  answerOptions = new Array(
     wordArray[answerIndex],
     wordArray[backIndex],
     wordArray[frontIndex]
@@ -240,7 +272,6 @@ const displayOptions = function () {
       if (answerTimer > 15 && answerTimer <= 20) roundScore += 50;
       if (answerTimer > 20) roundScore += 25;
       totalScore += roundScore;
-      roundScore = 0;
       displayScreenF("Well Done!");
     }
   });

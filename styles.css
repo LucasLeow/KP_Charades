@@ -143,3 +143,7 @@ body {
 .margin_top_top_top {
   margin-top: 18rem;
 }
+
+.grey_out {
+  opacity: 0.3;
+}
