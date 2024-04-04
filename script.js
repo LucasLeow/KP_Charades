@@ -101,6 +101,10 @@ const displayWord = function () {
     cycleCount++;
 
     if (cycleCount == 3) {
+      // reset cycleCount
+      cycleCount = 0;
+      count = 0;
+      intervalSpeed = 50;
       clearInterval(randomWordInterval);
       countdownTimer = setInterval(countdown, 1000);
       return;
@@ -149,8 +153,16 @@ const displayScreenA = () => {
   <div class="row center_normal--text round_number"></div>
   <button class="screenA_readyBtn btn">I'm Ready!</button>
 </div>`;
-
   screenNode.innerHTML = screenA_html;
+  actorReadyBtnNode = document.querySelector(".screenA_readyBtn");
+  roundDivNode = document.querySelector(".round_number");
+  roundDivNode.textContent = `Round ${roundNumber} of ${MAXROUND}`;
+  document.body.style.backgroundColor = "#1f618d";
+
+  actorReadyBtnNode.addEventListener("click", function (ev) {
+    ev.preventDefault();
+    displayScreenB();
+  });
 };
 
 const displayScreenB = () => {
@@ -164,8 +176,10 @@ const displayScreenB = () => {
   <div class="row center_normal--text word"></div>
   <div class="countdown center_normal--text mt-5"></div>
   </div>`;
-
   screenNode.innerHTML = screenB_html;
+  wordNode = document.querySelector(".word");
+  timerNode = document.querySelector(".countdown");
+  randomWordInterval = setInterval(displayWord, intervalSpeed);
 };
 
 const displayScreenD = () => {
@@ -221,7 +235,8 @@ const displayScreenF = (msg) => {
   `;
   screenNode.innerHTML = screenF_html;
   roundScore = 0;
-  setTimeout(displayScreenA, 3000); // switch to screenA after 3 seconds
+  roundNumber++;
+  if (roundNumber <= MAXROUND) setTimeout(displayScreenA, 5000); // switch to screenA after 5 seconds
 };
 
 const displayOptions = function () {
@@ -294,23 +309,10 @@ nameSubmitBtnNode.addEventListener("click", function (ev) {
   actorName = actorNameInput.value;
   console.log(guesserName, actorName);
   displayScreenA();
-  roundDivNode = document.querySelector(".round_number");
-  actorReadyBtnNode = document.querySelector(".screenA_readyBtn");
-  console.log(roundDivNode);
   screenNode.scrollIntoView({
     behavior: "auto",
     block: "center",
     inline: "center",
-  });
-
-  // Screen A Functionalities
-  roundDivNode.textContent = `Round ${roundNumber} of ${MAXROUND}`;
-  actorReadyBtnNode.addEventListener("click", function (ev) {
-    ev.preventDefault();
-    displayScreenB();
-    wordNode = document.querySelector(".word");
-    timerNode = document.querySelector(".countdown");
-    randomWordInterval = setInterval(displayWord, intervalSpeed);
   });
 });
 
