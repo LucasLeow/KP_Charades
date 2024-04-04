@@ -30,6 +30,10 @@ let cycleCount = 0;
 let guessTime = 2; // 15 seconds
 let countdownTimer;
 
+let answerTimer = 0;
+let roundScore = 0;
+let totalScore = 0;
+
 // =========================================================================================================
 // HTMLs
 // =========================================================================================================
@@ -86,6 +90,7 @@ let guessReadyBtnNode;
 // let guessCountDownTimer;
 // let guesserTime;
 
+// =========================================================================================================
 // Helper Functions
 // =========================================================================================================
 const displayWord = function () {
@@ -118,6 +123,10 @@ function countdown() {
     timerNode.innerHTML = guessTime + " Seconds Remaining To Act";
     guessTime--;
   }
+}
+
+function countup() {
+  answerTimer++;
 }
 
 function mod(n, m) {
@@ -215,11 +224,25 @@ const displayOptions = function () {
 </div>`;
 
   screenNode.innerHTML = screenE_html;
+  const scoreTimer = setInterval(countup, 1000); // start counting when option screen shown
 
   // Event delegation for option selection
   document.querySelector(".container").addEventListener("click", function (ev) {
     ev.preventDefault();
-    console.log(ev.target.dataset.answer);
+    clearInterval(scoreTimer);
+    if (ev.target.dataset.answer !== selectedWord) {
+      displayScreenF("Incorrect Answer!");
+    } else {
+      // correct answer selected
+      if (answerTimer <= 5) roundScore += 150;
+      if (answerTimer > 5 && answerTimer <= 10) roundScore += 100;
+      if (answerTimer > 10 && answerTimer <= 15) roundScore += 75;
+      if (answerTimer > 15 && answerTimer <= 20) roundScore += 50;
+      if (answerTimer > 20) roundScore += 25;
+      totalScore += roundScore;
+      roundScore = 0;
+      displayScreenF("Well Done!");
+    }
   });
 
   // iterate through answerOptions & mcqNodes to populate mcqNodes in random order
@@ -264,19 +287,19 @@ nameSubmitBtnNode.addEventListener("click", function (ev) {
 // Event Listeners
 // =========================================================================================================
 
-wordNode.addEventListener("click", function () {
-  clearInterval(randomWordInterval);
-});
+// wordNode.addEventListener("click", function () {
+//   clearInterval(randomWordInterval);
+// });
 
-guessBtnContainerNode.addEventListener(
-  "click",
-  function () {
-    guessBtnNode.classList.toggle("hidden");
-    guesserTime = 5;
-    guessCountDownTimer = setInterval(guessCountdown, 1000);
-  },
-  false
-);
+// guessBtnContainerNode.addEventListener(
+//   "click",
+//   function () {
+//     guessBtnNode.classList.toggle("hidden");
+//     guesserTime = 5;
+//     guessCountDownTimer = setInterval(guessCountdown, 1000);
+//   },
+//   false
+// );
 
 // =========================================================================================================
 // Main program
